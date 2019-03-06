@@ -2,10 +2,10 @@ var nodes = [];
 var N = 101;
 var pix_size = 450;
 var node_size = 100;
-var x_min = 20;
-var x_max = 30;
-var y_min = 25;
-var y_max = 30;
+var x_min = 40;
+var x_max = 60;
+var y_min = 40;
+var y_max = 60;
 var xc = (x_min+x_max)/2;
 var yc = (y_min+y_max)/2;
 var emax = (x_max-x_min>y_max-y_min)?x_max-x_min:y_max-y_min;
@@ -44,7 +44,7 @@ function setup() {
 	setAvailableFirefightersText();
 	//nodes[int(N*N/2+N/2)].burn();
 	// nodes[int(nodes.length/2)].burn();
-	nodes[25*51+25].burn();
+	nodes[int(nodes.length/2)].burn();
 }
 
 function draw() {
@@ -61,6 +61,9 @@ function draw() {
 }
 
 function mousePressed() {
+	if(mouseX < 0 || mouseX >= width || mouseY < 0 || mouseY >= height) {
+		return;
+	}
 	var i = map(mouseY,0,height,yc-(emax+1)/2,yc+(emax+1)/2);
 	var j = map(mouseX,0,width,xc-(emax+1)/2,xc+(emax+1)/2);
 	console.log(i,j);
